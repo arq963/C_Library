@@ -1,4 +1,4 @@
-// Created by Ali ur Rahman Qureshi
+// swift-tools-version: 6.1
 
 import PackageDescription
 
