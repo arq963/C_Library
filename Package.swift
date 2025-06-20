@@ -6,7 +6,6 @@ let package = Package(
     name: "C_Library",
     platforms: [
         .iOS(.v13),
-//        .iPadOS(.v13),
         .macOS(.v10_15)
     ],
     products: [
