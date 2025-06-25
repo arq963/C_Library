@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct C_Font {
+public struct C_Font {
     
-    var font: Font
-    var lineHeight: CGFloat
-    var kerning: CGFloat
-    var allignment: Alignment
+    public var font: Font
+    public var lineHeight: CGFloat
+    public var kerning: CGFloat
+    public var allignment: Alignment
     
-    init(_ size: CGFloat,
+    public init(_ size: CGFloat,
          _ name: C_FontName = .system,
          _ weight: Font.Weight = .regular,
          allignment: Alignment = .leading) {

@@ -25,7 +25,7 @@ import SwiftUI
  footnote            13     Regular
  */
 
-enum C_TextType {
+public enum C_TextType {
     
     case title
     case heading
@@ -39,7 +39,7 @@ enum C_TextType {
     case callout
     case caption
     
-    var fontSize: CGFloat {
+    public var fontSize: CGFloat {
         switch self {
         case .title:                return 24
         case .heading:              return 20
@@ -55,7 +55,7 @@ enum C_TextType {
         }
     }
     
-    var fontWeight: Font.Weight {
+    public var fontWeight: Font.Weight {
         switch self {
         case .title:                return .black
         case .heading:              return .bold
@@ -71,7 +71,7 @@ enum C_TextType {
         }
     }
     
-    var color: C_Color {
+    public var color: C_Color {
         switch self {
         case .title:                return .appYellow
         case .heading:              return .textPrimary
@@ -87,7 +87,7 @@ enum C_TextType {
         }
     }
     
-    var fontName: C_FontName {
+    public var fontName: C_FontName {
         switch self {
         case .title:                return .system
         case .heading:              return .system
@@ -103,7 +103,7 @@ enum C_TextType {
         }
     }
     
-    var alignment: Alignment {
+    public var alignment: Alignment {
         switch self {
         case .title:                return .center
         case .heading:              return .leading

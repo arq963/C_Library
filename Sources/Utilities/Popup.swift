@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct PopUp {
+public struct PopUp {
     
-    var isShowMessage = false
-    var alert: SwiftUI.Alert!
+    public var isShowMessage = false
+    public var alert: SwiftUI.Alert!
     
-    mutating func showOneButtonAlert(title: String,
+    public mutating func showOneButtonAlert(title: String,
                                      message: String,
                                      buttonText: String = "OK",
                                      action: (() -> ())? = nil) {
@@ -27,7 +27,7 @@ struct PopUp {
         self.isShowMessage = true
     }
     
-    mutating func showTwoButtonsAlert(title: String,
+    public mutating func showTwoButtonsAlert(title: String,
                                       message: String,
                                       buttonTitle: String = "OK",
                                       action: @escaping () -> ()) {
@@ -40,4 +40,6 @@ struct PopUp {
         )
         self.isShowMessage = true
     }
+    
+    public init() {}
 }

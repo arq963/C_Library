@@ -20,7 +20,7 @@ import SwiftUI
  900: Black (Heavy)
  */
 
-enum C_FontName {
+public enum C_FontName {
     
     case gilroy
     case cera
