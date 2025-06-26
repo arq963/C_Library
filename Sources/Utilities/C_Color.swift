@@ -20,14 +20,15 @@ public enum C_Color {
     
     case backgroundPrimary, backgroundSecondary,
          appBlue, appYellow,
-         darkBlue0, darkBlue1, lightBlue, darkBlueStartingColor,
-         textPrimary, textSecondary, textPlaceholder, textSectionHeader,
-         green, statusGreen,
+         darkBlue0, darkBlue1, lightBlue, darkBlueStartingColor, tiffinyBlue,
+         textPrimary, textSecondary, textPlaceholder, textSectionHeader, base,
+         green, statusGreen, greenLight,
          red, red1, yellow,
          errorOrange, orange,
-         black, darkGray, gray, lightGray, veryLightGray, systemGray, darkScreen,
+         black, darkGray, gray, lightGray, veryLightGray, veryveryLightGray, systemGray, darkScreen,
          white, whiteDisabled, whiteEnabled, offWhite,
-         outline, inputBackGroundLight, inputBackgroundDark, circleInline, grayProgressBar, grayImage, buttonSelected,
+         outline, inputBackGroundLight, inputBackgroundDark, circleInline, grayProgressBar, grayImage,
+         buttonSelected, button_openFile,
          clear
     
     public var rawValue: Color {
@@ -46,6 +47,7 @@ public enum C_Color {
         case .darkBlue1:                return getColor(red: 23,  green: 51,  blue: 113)
         case .darkBlueStartingColor:    return getColor(red: 8,   green: 19,  blue: 47)
         case .lightBlue:                return getColor(red: 204, green: 206, blue: 230)
+        case .tiffinyBlue:              return getColor(red: 2, green: 170, blue: 176)
             
         case .appYellow:                return getColor(red: 255, green: 188, blue: 45)
         case .appBlue:                  return getColor(red: 23,  green: 51,  blue: 113)        
@@ -55,7 +57,9 @@ public enum C_Color {
         case .gray:                     return getColor(red: 77,  green: 77,  blue: 77)
         case .systemGray:               return Color.gray
         case .lightGray:                return getColor(red: 102, green: 102, blue: 102)
-        case .veryLightGray:            return getColor(red: 200, green: 200, blue: 200)
+        case .veryLightGray:            return getColor(red: 127, green: 127, blue: 127)
+        case .veryveryLightGray:        return getColor(red: 200, green: 200, blue: 200)
+        
         case .grayProgressBar:          return getColor(red: 0, green: 0, blue: 0, alpha: 0.05)
         case .grayImage:                return getColor(red: 102, green: 102, blue: 102)
         
@@ -73,6 +77,7 @@ public enum C_Color {
         case .yellow:                   return getColor(red: 255, green: 255, blue: 0)
             
         case .green:                    return getColor(red: 0,   green: 255, blue: 0)
+        case .greenLight:               return getColor(red: 7, green: 153, blue: 109)
         case .statusGreen:              return getColor(red: 7, green: 153, blue: 109)
             
         case .clear:                    return Color.clear
@@ -83,8 +88,10 @@ public enum C_Color {
         
         case .circleInline:             return getColor(red: 230, green: 230, blue: 230)
         
-        case .buttonSelected:            return getColor(red: 255, green: 255, blue: 255)
+        case .buttonSelected:           return getColor(red: 255, green: 255, blue: 255)
         case .outline:                  return getColor(red: 217, green: 217, blue: 217)
+        case .base:                     return getColor(red: 51, green: 51, blue: 51)
+        case .button_openFile:          return getColor(red: 247, green: 247, blue: 247)
         }
     }
     
@@ -133,4 +140,27 @@ public enum C_Color {
             blue: Double(blue)/255,
             alpha: alpha)
     }
+    
+#if os(macOS)
+    public static let m_background  = VisualEffectView()
+#endif
+
 }
+
+#if os(macOS)
+public struct VisualEffectView: NSViewRepresentable {
+    public func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+
+        view.blendingMode = .behindWindow
+        view.state = .active
+        view.material = .underWindowBackground
+        
+        return view
+    }
+
+    public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        //
+    }
+}
+#endif
