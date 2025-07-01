@@ -23,6 +23,18 @@ import SwiftUI
  caption             12     Regular
  caption2            11     Regular
  footnote            13     Regular
+ 
+ case .title:                return 24
+ case .heading:              return 20
+ case .subHeading:           return 17
+ case .labelTextPrimary:     return 17
+ case .labelTextSecondary:   return 17
+ case .labelTextPlaceholder: return 17
+ case .themeButton:          return 17
+ case .body:                 return 15
+ case .sectionHeader:        return 14
+ case .callout:              return 14
+ case .caption:              return 12
  */
 
 public enum C_TextType {

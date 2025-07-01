@@ -19,9 +19,9 @@ public typealias NativeColor = UIColor
 public enum C_Color {
     
     case backgroundPrimary, backgroundSecondary,
-         appBlue, appYellow,
+         appBlue, appYellow, appAccent,
          darkBlue0, darkBlue1, lightBlue, darkBlueStartingColor, tiffinyBlue,
-         textPrimary, textSecondary, textPlaceholder, textSectionHeader, base,
+         textPrimary, textSecondary, textPlaceholder, textSectionHeader, base, textAccentButton,
          green, statusGreen, greenLight,
          red, red1, yellow,
          errorOrange, orange,
@@ -42,6 +42,7 @@ public enum C_Color {
         case .textSecondary:            return Color("textSecondary")
         case .textPlaceholder:          return Color("textPlaceholder")
         case .textSectionHeader:        return Color("textSectionHeader")
+        case .textAccentButton:         return Color("textAccentButton")
             
         case .darkBlue0:                return getColor(red: 3,   green: 25,  blue: 50)
         case .darkBlue1:                return getColor(red: 23,  green: 51,  blue: 113)
@@ -50,7 +51,8 @@ public enum C_Color {
         case .tiffinyBlue:              return getColor(red: 2, green: 170, blue: 176)
             
         case .appYellow:                return getColor(red: 255, green: 188, blue: 45)
-        case .appBlue:                  return getColor(red: 23,  green: 51,  blue: 113)        
+        case .appBlue:                  return getColor(red: 23,  green: 51,  blue: 113)
+        case .appAccent:                return Color("accentColor")
         
         case .black:                    return getColor(red: 0,   green: 0,   blue: 0)
         case .darkGray:                 return getColor(red: 51,  green: 51,  blue: 51)
@@ -60,7 +62,7 @@ public enum C_Color {
         case .veryLightGray:            return getColor(red: 127, green: 127, blue: 127)
         case .veryveryLightGray:        return getColor(red: 200, green: 200, blue: 200)
         
-        case .grayProgressBar:          return getColor(red: 0, green: 0, blue: 0, alpha: 0.05)
+        case .grayProgressBar:          return Color("grayProgressBar")// getColor(red: 0, green: 0, blue: 0, alpha: 0.05)
         case .grayImage:                return getColor(red: 102, green: 102, blue: 102)
         
         case .white:                    return getColor(red: 255, green: 255, blue: 255)
@@ -89,7 +91,7 @@ public enum C_Color {
         case .circleInline:             return getColor(red: 230, green: 230, blue: 230)
         
         case .buttonSelected:           return getColor(red: 255, green: 255, blue: 255)
-        case .outline:                  return getColor(red: 217, green: 217, blue: 217)
+        case .outline:                  return Color("outline")
         case .base:                     return getColor(red: 51, green: 51, blue: 51)
         case .button_openFile:          return getColor(red: 247, green: 247, blue: 247)
         }
@@ -161,6 +163,6 @@ public struct VisualEffectView: NSViewRepresentable {
 
     public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
         //
-    }
+    }    
 }
 #endif
