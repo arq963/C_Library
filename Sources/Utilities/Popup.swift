@@ -13,10 +13,10 @@ public struct PopUp {
     public var isShowMessage = false
     public var alert: SwiftUI.Alert!
     
-    public mutating func showOneButtonAlert(title: String,
-                                     message: String,
-                                     buttonText: String = "OK",
-                                     action: (() -> ())? = nil) {
+    public mutating func showOneButtonAlert(title: String = "Alert!",
+                                            message: String,
+                                            buttonText: String = "OK",
+                                            action: (() -> ())? = nil) {
         alert = SwiftUI.Alert(
             title: Text(title),
             message: Text(message),
@@ -27,10 +27,10 @@ public struct PopUp {
         self.isShowMessage = true
     }
     
-    public mutating func showTwoButtonsAlert(title: String,
-                                      message: String,
-                                      buttonTitle: String = "OK",
-                                      action: @escaping () -> ()) {
+    public mutating func showTwoButtonsAlert(title: String = "Alert!",
+                                             message: String,
+                                             buttonTitle: String = "OK",
+                                             action: @escaping () -> ()) {
         alert = SwiftUI.Alert(
             title: Text(title),
             message: Text(message),

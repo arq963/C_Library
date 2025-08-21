@@ -14,7 +14,8 @@ public struct C_Text: View {
     public let width: CGFloat?
     public let alignment: Alignment?
     public let lineSpacing: CGFloat
-    public let color: C_Color
+    public let color: Color
+    public let fixedSizeVertical: Bool
 
     private let textAlignment: TextAlignment
     
@@ -22,21 +23,22 @@ public struct C_Text: View {
         
         Text(text)
             .font(typography.font)
-            .fixedSize(horizontal: false, vertical: true)
             .lineSpacing(lineSpacing)
             .multilineTextAlignment(textAlignment)
-            .foregroundStyle(color.rawValue)
+            .foregroundStyle(color)
+            .fixedSize(horizontal: false, vertical: fixedSizeVertical)
             .frame(width: width, alignment: alignment ?? typography.allignment)
     }
     
     public init(_ text: String,
-         _ size: CGFloat,
-         color: C_Color = .textPrimary,
-         fontName: C_FontName = .system,
-         fontWeight: Font.Weight = .regular,
-         alignment: Alignment = .leading,
-         width: CGFloat? = nil,
-         lineSpacing: CGFloat? = 0) {
+                size: CGFloat,
+                color: Color = .textPrimary,
+                fontName: C_FontName = .system,
+                fontWeight: Font.Weight = .regular,
+                alignment: Alignment = .leading,
+                width: CGFloat? = nil,
+                lineSpacing: CGFloat? = 0,
+                fixedSizeVertical: Bool = true) {
         
         self.text = text
         self.typography = C_Font(size, fontName, fontWeight, allignment: alignment)
@@ -61,15 +63,18 @@ public struct C_Text: View {
         default:
             textAlignment = .leading
         }
+        
+        self.fixedSizeVertical = fixedSizeVertical
     }
     
     public init(_ text: String,
-         type: C_TextType = .body,
-         color: C_Color? = nil,
-         fontWeight: Font.Weight? = nil,
-         alignment: TextAlignment = .center,
-         width: CGFloat? = nil,
-         fontSize: CGFloat? = nil) {
+                type: C_TextType = .body,
+                color: Color? = nil,
+                fontWeight: Font.Weight? = nil,
+                alignment: TextAlignment = .center,
+                width: CGFloat? = nil,
+                fontSize: CGFloat? = nil,
+                fixedSizeVertical: Bool = true) {
         
         self.text = text
         self.typography = C_Font(fontSize ?? type.fontSize,
@@ -82,9 +87,10 @@ public struct C_Text: View {
         self.textAlignment = alignment
         self.width = width
         self.lineSpacing = 0
+        self.fixedSizeVertical = fixedSizeVertical
     }
 }
 
 #Preview {
-    C_Text("Testing Text", 20)
+    C_Text("Testing Text", size: 20)
 }

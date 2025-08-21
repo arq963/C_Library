@@ -83,7 +83,7 @@ public enum C_TextType {
         }
     }
     
-    public var color: C_Color {
+    public var color: Color {
         switch self {
         case .title:                return .appYellow
         case .heading:              return .textPrimary
