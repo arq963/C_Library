@@ -11,42 +11,30 @@ import SwiftUI
 public struct C_Font {
     
     public var font: Font
-    public var lineHeight: CGFloat
-    public var kerning: CGFloat
-    public var allignment: Alignment
+    public var alignment: Alignment
     
-    public init(_ size: CGFloat,
-         _ name: C_FontName = .system,
-         _ weight: Font.Weight = .regular,
-         allignment: Alignment = .leading) {
+    public init(
+        _ size: CGFloat,
+        _ name: C_FontName = .system,
+        _ weight: Font.Weight = .regular,
+        alignment: Alignment = .leading,
+        relativeTo style: Font.TextStyle = .body // 👈 NEW
+    ) {
         
         switch name {
         case .system:
+            // System font adapts automatically
             self.font = Font.system(size: size, weight: weight)
+            
         default:
-            self.font = Font.custom(C_FontName.get(name, weight), size: size)
+            // Custom font tied to Dynamic Type
+            self.font = Font.custom(
+                C_FontName.get(name, weight),
+                size: size,
+                relativeTo: style // 👈 IMPORTANT
+            )
         }
-                
-        self.allignment = allignment
-        self.kerning = 0
         
-        switch size {
-            
-            case 35: self.lineHeight = 48
-            case 23: self.lineHeight = 31.32
-            case 20: self.lineHeight = 27
-            case 18: self.lineHeight = 24
-            case 17: self.lineHeight = 22
-            case 16: self.lineHeight = 21.8
-            case 14: self.lineHeight = 19.1
-            case 13: self.lineHeight = 17.77
-            case 12: self.lineHeight = 16
-            case 11: self.lineHeight = 17.77
-            case 10: self.lineHeight = 14
-            case 9:  self.lineHeight = 12
-            case 7:  self.lineHeight = 12
-            
-            default: self.lineHeight = 17.77
-        }
+        self.alignment = alignment
     }
 }

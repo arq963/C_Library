@@ -29,7 +29,6 @@ extension Color {
 
 public enum C_Color {
     
-//    case backgroundPrimary, backgroundSecondary,
          case appBlue, appYellow, appAccent, appAccentReversed,
          textPrimary, textSecondary, textTertiary, textPlaceholder, textSectionHeader
     
@@ -37,23 +36,13 @@ public enum C_Color {
         
         switch self {
             
-//        case .backgroundPrimary:        return Color("backgroundPrimary")
-//        case .backgroundSecondary:      return Color("backgroundSecondary")
-            
         case .textPrimary:              return Color("textPrimary")
         case .textSecondary:            return Color("textSecondary")
         case .textTertiary:             return Color("textTertiary")
         case .textPlaceholder:          return Color("textPlaceholder")
         case .textSectionHeader:        return Color("textSectionHeader")
         case .appAccent:                return Color("appAccent")
-        case .appAccentReversed:        return Color("appAccentReversed")
-            
-//        case .darkBlue0:                return getColor(red: 3,   green: 25,  blue: 50)
-//        case .darkBlue1:                return getColor(red: 23,  green: 51,  blue: 113)
-//        case .darkBlueStartingColor:    return getColor(red: 8,   green: 19,  blue: 47)
-//        case .lightBlue:                return getColor(red: 204, green: 206, blue: 230)
-//        case .tiffinyBlue:              return getColor(red: 2, green: 170, blue: 176)
-            
+        case .appAccentReversed:        return Color("appAccentReversed")            
         case .appYellow:                return Color("appYellow")
         case .appBlue:                  return Color("appBlue")
 

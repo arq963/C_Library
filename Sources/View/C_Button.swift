@@ -22,7 +22,8 @@ public struct C_Button<Label>: View where Label: View {
             label
         }
         
-//        .frame(minWidth: C_Size.button_minimumSize, minHeight: C_Size.button_minimumSize)
+        .frame(minWidth: C_Size.button_minimumSize,
+               minHeight: C_Size.button_minimumSize)
     }
 }
 

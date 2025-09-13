@@ -13,7 +13,6 @@ public struct C_Text: View {
     public let typography: C_Font
     public let width: CGFloat?
     public let alignment: Alignment?
-    public let lineSpacing: CGFloat
     public let color: Color
     public let fixedSizeVertical: Bool
 
@@ -23,11 +22,10 @@ public struct C_Text: View {
         
         Text(text)
             .font(typography.font)
-            .lineSpacing(lineSpacing)
             .multilineTextAlignment(textAlignment)
             .foregroundStyle(color)
             .fixedSize(horizontal: false, vertical: fixedSizeVertical)
-            .frame(width: width, alignment: alignment ?? typography.allignment)
+            .frame(width: width, alignment: alignment ?? typography.alignment)
     }
     
     public init(_ text: String,
@@ -37,20 +35,13 @@ public struct C_Text: View {
                 fontWeight: Font.Weight = .regular,
                 alignment: Alignment = .leading,
                 width: CGFloat? = nil,
-                lineSpacing: CGFloat? = 0,
                 fixedSizeVertical: Bool = true) {
         
         self.text = text
-        self.typography = C_Font(size, fontName, fontWeight, allignment: alignment)
+        self.typography = C_Font(size, fontName, fontWeight, alignment: alignment)
         self.width = width
         self.alignment = alignment
         self.color = color
-        
-        if let lineSpacing {
-            self.lineSpacing = lineSpacing
-        } else {
-            self.lineSpacing = 0
-        }
         
         switch alignment {
                 
@@ -80,13 +71,12 @@ public struct C_Text: View {
         self.typography = C_Font(fontSize ?? type.fontSize,
                                  type.fontName,
                                  fontWeight == nil ? type.fontWeight : fontWeight!,
-                                 allignment: type.alignment)
+                                 alignment: type.alignment)
         
         self.color = color ?? type.color
         self.alignment = type.alignment
         self.textAlignment = alignment
         self.width = width
-        self.lineSpacing = 0
         self.fixedSizeVertical = fixedSizeVertical
     }
 }

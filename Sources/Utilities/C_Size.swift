@@ -23,31 +23,6 @@ public final class C_Size: ObservableObject {
 #if os(iOS)
     
     @MainActor
-    public static var paddingHorizontal: CGFloat {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .unspecified:
-            return 0
-        case .phone:
-            return 20
-        case .pad:
-            return 20
-        case .tv:
-            return 20
-        case .carPlay:
-            return 20
-        case .mac:
-            return 20
-        case .vision:
-            return 20
-        @unknown default:
-            return 20
-        }
-    }
-    
-    @MainActor
-    public var isLandscape: Bool = UIDevice.current.orientation.isLandscape
-    
-    @MainActor
     public var p_innerViewWidth: CGFloat {
         if isLandscape {
             return 650 - 80
@@ -70,36 +45,56 @@ public final class C_Size: ObservableObject {
     
 #endif
     
-    public static let listPaddingTopSectionToSection: CGFloat = 35
-    public static let listHeightCell: CGFloat = 44
-    public static let listPaddingLeadingImage: CGFloat = 20
-    public static let listPaddingTrailingImage: CGFloat = 15
-    public static let listPaddingLeadingDivider: CGFloat = imageNormal + listPaddingLeadingImage + listPaddingTrailingImage
-    public static let listWidthIconNavigation: CGFloat = 13.5
-    
-    public static let cornerRadius: CGFloat = 10
-    
     // Recommended Min = 44
     // Recommended Max = 50
     
-    public static let button_minimumSize: CGFloat = 46
+    @MainActor
+    public static var button_minimumSize: CGFloat {
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .unspecified:
+            return 46
+        case .phone:
+            return 46
+        case .pad:
+            return 50
+        case .tv:
+            return 46
+        case .carPlay:
+            return 46
+        case .mac:
+            return 46
+        case .vision:
+            return 46
+        @unknown default:
+            return 46
+        }
+    }
+    
+    public static let listWidthIconNavigation: CGFloat = 13.5
+    public static let listHeightCell: CGFloat = 44
+    
+    public static let cornerRadius: CGFloat = 10
+
     public static let height_textField: CGFloat = 47
     
     public static let m_appMaxWidth: CGFloat = 550 + 200
     public static let m_appMaxHeight: CGFloat = 640 + 65
-    
-    private var cancellable: AnyCancellable?
 
     public static let p_vpnContentWidth: CGFloat = 500
     public static let p_onBoardingContentWidth: CGFloat = 400
     
     public static let i_buttonWidth: CGFloat = 318
     
-    public static let width_textField: CGFloat = 318
-    
-    public static let m_inputViewWidth: CGFloat = 450
+    public static let inputFieldMaxWidth: CGFloat = 450
     public static let m_ButtonWidth: CGFloat = 330
-
+    public static let textFieldHeight: CGFloat = 47
+    
+    private var cancellable: AnyCancellable?
+    
+    @MainActor
+    private var isLandscape: Bool = UIDevice.current.orientation.isLandscape
+    
     @MainActor
     init() {
         #if os(iOS)
