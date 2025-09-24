@@ -10,22 +10,24 @@ import SwiftUI
 public struct C_Text: View {
     
     public let text: String
-    public let typography: C_Font
+    public let font: Font
     public let width: CGFloat?
-    public let alignment: Alignment?
+    public let alignment: Alignment
     public let color: Color
     public let fixedSizeVertical: Bool
-
+    public let fontWeight: Font.Weight?
+    
     private let textAlignment: TextAlignment
     
     public var body: some View {
         
         Text(text)
-            .font(typography.font)
+            .font(font)
+            .fontWeight(fontWeight)
             .multilineTextAlignment(textAlignment)
             .foregroundStyle(color)
             .fixedSize(horizontal: false, vertical: fixedSizeVertical)
-            .frame(width: width, alignment: alignment ?? typography.alignment)
+            .frame(width: width, alignment: alignment)
     }
     
     public init(_ text: String,
@@ -38,10 +40,12 @@ public struct C_Text: View {
                 fixedSizeVertical: Bool = true) {
         
         self.text = text
-        self.typography = C_Font(size, fontName, fontWeight, alignment: alignment)
+        let cfont = C_Font(size, fontName, fontWeight, alignment: alignment)
+        self.font = cfont.font
         self.width = width
         self.alignment = alignment
         self.color = color
+        self.fontWeight = fontWeight
         
         switch alignment {
                 
@@ -51,31 +55,36 @@ public struct C_Text: View {
                 textAlignment = .leading
             case .trailing:
                 textAlignment = .trailing
-        default:
-            textAlignment = .leading
+            default:
+                textAlignment = .leading
         }
         
         self.fixedSizeVertical = fixedSizeVertical
     }
     
     public init(_ text: String,
-                type: C_TextType = .body,
+                type: Font = .body,
                 color: Color? = nil,
                 fontWeight: Font.Weight? = nil,
                 alignment: TextAlignment = .center,
                 width: CGFloat? = nil,
-                fontSize: CGFloat? = nil,
                 fixedSizeVertical: Bool = true) {
         
         self.text = text
-        self.typography = C_Font(fontSize ?? type.fontSize,
-                                 type.fontName,
-                                 fontWeight == nil ? type.fontWeight : fontWeight!,
-                                 alignment: type.alignment)
-        
-        self.color = color ?? type.color
-        self.alignment = type.alignment
+        self.font = type
+        self.color = color ?? .textPrimary
+        self.fontWeight = fontWeight
         self.textAlignment = alignment
+        
+        switch alignment {
+        case .center:
+            self.alignment = .center
+        case .leading:
+            self.alignment = .leading
+        case .trailing:
+            self.alignment = .trailing
+        }
+        
         self.width = width
         self.fixedSizeVertical = fixedSizeVertical
     }

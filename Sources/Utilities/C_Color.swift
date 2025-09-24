@@ -21,6 +21,7 @@ extension Color {
     static public let backgroundSecondary: Color = Color("backgroundSecondary")
     static public let textPrimary: Color = Color("textPrimary")
     static public let textSecondary: Color = Color("textSecondary")
+    static public let textTertiary: Color = Color("textTertiary")
     static public let appAccent: Color = Color("appAccent")
     static public let appYellow: Color = Color("appYellow")
     static public let textPlaceholder: Color = Color("textPlaceholder")

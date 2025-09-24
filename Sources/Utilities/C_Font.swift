@@ -38,3 +38,42 @@ public struct C_Font {
         self.alignment = alignment
     }
 }
+
+extension Font {
+    public static var labelTextPrimary: Font {
+        .system(size: 16, weight: .regular, design: .default)
+    }
+    
+    public static var sectionHeader: Font {
+        .system(size: 13, weight: .semibold, design: .default)
+    }
+    
+    public func getFontColor(for font: Font) -> Color {
+        
+        switch font {
+        case .labelTextPrimary:
+            return .gray
+        case .sectionHeader:
+            return .textSectionHeader
+        case .title3:
+            return .textPrimary
+        case .title2:
+            return .textPrimary
+        case .title:
+            return .textPrimary
+        case .body:
+            return .textPrimary
+        case .callout:
+            return .textSecondary
+        case .caption:
+            return .textSecondary
+        case .caption2:
+            return .textSecondary
+        case .footnote:
+            return .textSecondary
+        default:
+            return .textSecondary
+        }
+        
+    }
+}

@@ -87,6 +87,7 @@ public final class C_Size: ObservableObject {
     public static let i_buttonWidth: CGFloat = 318
     
     public static let inputFieldMaxWidth: CGFloat = 450
+    public static let maximumContentWidth: CGFloat = 600
     public static let m_ButtonWidth: CGFloat = 330
     public static let textFieldHeight: CGFloat = 47
     
