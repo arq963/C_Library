@@ -7,8 +7,13 @@
 
 import SwiftUI
 
-struct C_CheveronRightView: View {
-    var body: some View {
+public struct C_CheveronRightView: View {
+    
+    public init() {
+        
+    }
+    
+    public var body: some View {
         C_Image(systemImage: .chevronRight,
                 color: .textTertiary,
                 width: 8,

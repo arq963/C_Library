@@ -71,7 +71,6 @@ public final class C_Size: ObservableObject {
         }
     }
     
-    public static let listWidthIconNavigation: CGFloat = 13.5
     public static let listHeightCell: CGFloat = 44
     
     public static let cornerRadius: CGFloat = 10

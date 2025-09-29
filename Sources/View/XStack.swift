@@ -7,25 +7,74 @@
 
 import SwiftUI
 
-public struct XStack<Content: View>: View {
+public struct C_VStack<Content: View>: View {
     
-    let isLandscape: Bool
+    let spacing: CGFloat?
+    let alignment: HorizontalAlignment
     let content: () -> Content
 
-    public init(isLandscape: Bool,
+    public init(spacing: CGFloat? = nil,
+                alignment: HorizontalAlignment = .center,
                 @ViewBuilder content: @escaping () -> Content) {
-        self.isLandscape = isLandscape
         self.content = content
+        self.spacing = spacing
+        self.alignment = alignment
     }
 
     public var body: some View {
-        if isLandscape {
-            HStack {
+        
+        VStack(alignment: alignment, spacing: spacing) {
+            HStack { Spacer() }
+            content()
+        }
+    }
+}
+
+public struct C_HStack<Content: View>: View {
+    
+    let spacing: CGFloat?
+    let alignment: VerticalAlignment
+    let content: () -> Content
+
+    public init(spacing: CGFloat? = nil,
+                alignment: VerticalAlignment = .center,
+                @ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+        self.spacing = spacing
+        self.alignment = alignment
+    }
+
+    public var body: some View {
+        
+        HStack(alignment: alignment, spacing: spacing) {
+            VStack { Spacer() }
+            content()
+        }
+    }
+}
+
+public struct XStack<Content: View>: View {
+    
+    let isHStack: Bool
+    let spacing: CGFloat?
+    let content: () -> Content
+
+    public init(isHStack: Bool = false,
+                spacing: CGFloat? = nil,
+                @ViewBuilder content: @escaping () -> Content) {
+        self.isHStack = isHStack
+        self.content = content
+        self.spacing = spacing
+    }
+
+    public var body: some View {
+        if isHStack {
+            HStack(spacing: spacing) {
                 VStack { Spacer() }
                 content()
             }
         } else {
-            VStack {
+            VStack(spacing: spacing) {
                 HStack { Spacer() }
                 content()
             }

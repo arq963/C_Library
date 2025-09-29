@@ -13,26 +13,21 @@ public struct C_Font {
     public var font: Font
     public var alignment: Alignment
     
-    public init(
-        _ size: CGFloat,
-        _ name: C_FontName = .system,
-        _ weight: Font.Weight = .regular,
-        alignment: Alignment = .leading,
-        relativeTo style: Font.TextStyle = .body // 👈 NEW
-    ) {
+    public init(_ size: CGFloat,
+                _ name: C_FontName = .system,
+                _ weight: Font.Weight = .regular,
+                alignment: Alignment = .leading,
+                relativeTo style: Font.TextStyle = .body) {
         
         switch name {
+            
         case .system:
-            // System font adapts automatically
             self.font = Font.system(size: size, weight: weight)
             
         default:
-            // Custom font tied to Dynamic Type
-            self.font = Font.custom(
-                C_FontName.get(name, weight),
-                size: size,
-                relativeTo: style // 👈 IMPORTANT
-            )
+            self.font = Font.custom(C_FontName.get(name, weight),
+                                    size: size,
+                                    relativeTo: style)
         }
         
         self.alignment = alignment
@@ -40,6 +35,7 @@ public struct C_Font {
 }
 
 extension Font {
+    
     public static var labelTextPrimary: Font {
         .system(size: 16, weight: .regular, design: .default)
     }
@@ -74,6 +70,5 @@ extension Font {
         default:
             return .textSecondary
         }
-        
     }
 }
