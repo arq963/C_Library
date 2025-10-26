@@ -5,6 +5,8 @@
 //  Created by ARahmanQ on 9/11/25.
 //
 
+#if os(iOS)
+
 import Foundation
 import UIKit
 import Combine
@@ -15,6 +17,9 @@ public final class C_Device: ObservableObject {
     public static let shared = C_Device()
     
     @Published public private(set) var isLandscape: Bool
+    
+    public var width: CGFloat { UIScreen.main.bounds.width }
+    public var height: CGFloat { UIScreen.main.bounds.height }
     
     private var cancellable: AnyCancellable?
     
@@ -32,3 +37,4 @@ public final class C_Device: ObservableObject {
     }
 }
 
+#endif

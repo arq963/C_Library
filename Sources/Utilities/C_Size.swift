@@ -51,6 +51,7 @@ public final class C_Size: ObservableObject {
     @MainActor
     public static var button_minimumSize: CGFloat {
         
+#if os(iOS)
         switch UIDevice.current.userInterfaceIdiom {
         case .unspecified:
             return 46
@@ -69,6 +70,9 @@ public final class C_Size: ObservableObject {
         @unknown default:
             return 46
         }
+#elseif os(macOS)
+        return 46
+#endif
     }
     
     public static let listHeightCell: CGFloat = 44
@@ -92,8 +96,10 @@ public final class C_Size: ObservableObject {
     
     private var cancellable: AnyCancellable?
     
+    #if os(iOS)
     @MainActor
     private var isLandscape: Bool = UIDevice.current.orientation.isLandscape
+    #endif
     
     @MainActor
     init() {

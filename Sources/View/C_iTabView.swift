@@ -5,6 +5,7 @@
 //  Created by Ali ur Rahman Qureshi on 13/12/2023.
 //
 
+#if os(iOS)
 import UIKit
 import SwiftUI
 import C_Library
@@ -63,3 +64,5 @@ public struct C_iTabView<T: Hashable & CaseIterable & RawRepresentable>: View wh
         self.textSize = textSize
     }
 }
+
+#endif

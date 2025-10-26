@@ -18,12 +18,14 @@ public struct C_Button<Label>: View where Label: View {
     }
     
     public var body: some View {
+        
         Button(action: action) {
             label
+                .frame(minWidth: C_Size.button_minimumSize,
+                       minHeight: C_Size.button_minimumSize)
+                .modifier(C_ModifierGlassEffect())
+                .modifier(C_ModifierCapsuleBorder())
         }
-        
-        .frame(minWidth: C_Size.button_minimumSize,
-               minHeight: C_Size.button_minimumSize)
     }
 }
 
@@ -36,3 +38,4 @@ public struct C_Button<Label>: View where Label: View {
             .foregroundColor(.white)
     }
 }
+

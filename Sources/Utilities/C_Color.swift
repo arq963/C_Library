@@ -68,7 +68,7 @@ public enum C_Color {
                               endPoint: .bottom)
     }
     
-    public static func gradientLightToDark() -> LinearGradient {
+    public static func gradientPrimaryToSecondary() -> LinearGradient {
         return LinearGradient(gradient: Gradient(colors: [Color.backgroundPrimary,
                                                           Color.backgroundSecondary]),
                               startPoint: .top,

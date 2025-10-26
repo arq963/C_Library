@@ -22,12 +22,14 @@ import SwiftUI
 
 public enum C_FontName {
     
+    case system
     case gilroy
     case cera
     case poppins
-    case system
+    case jakarta
+    case lexend
     
-    static func get(_ self: C_FontName, _ fontWeight: Font.Weight) -> String {
+    /*static func get(_ self: C_FontName, _ fontWeight: Font.Weight) -> String {
 
         switch self {
             
@@ -133,6 +135,86 @@ public enum C_FontName {
             
         case .system:
             return ""
+        }
+    }  */
+    
+    static func get(_ self: C_FontName,
+                    fontWeight: Font.Weight? = nil,
+                    fontWeightValue: Int? = nil) -> String {
+        
+        var weightOfFont: Font.Weight = .regular
+        
+        if fontWeight == nil,
+            let fontWeightValue = fontWeightValue {
+            
+            weightOfFont = fromRawValue(fontWeightValue)
+        } else if let fontWeight = fontWeight {
+            weightOfFont = fontWeight
+        }
+
+        switch self {
+            
+        case .system:
+            return ""
+            
+        case .jakarta:
+            return "PlusJakartaSans" + getWeight(weightOfFont)
+            
+        case .lexend:
+            return "Lexend" + getWeight(weightOfFont)
+        }
+    }
+    
+    static func fromRawValue(_ value: Int) -> Font.Weight {
+        let normalizedValue = max(100, min(value, 900)) // Clamp between 100-900
+        
+        switch normalizedValue {
+        case 100..<200: return .ultraLight
+        case 200..<300: return .thin
+        case 300..<400: return .light
+        case 400..<500: return .regular
+        case 500..<600: return .medium
+        case 600..<700: return .semibold
+        case 700..<800: return .bold
+        case 800..<900: return .heavy
+        case 900:       return .black
+        default:        return .regular // Fallback (shouldn't happen due to clamping)
+        }
+    }
+    
+    private static func getWeight(_ fontWeight: Font.Weight) -> String {
+        
+        switch fontWeight {
+            
+        case .ultraLight:
+            return "-Thin"
+            
+        case .thin:
+            return "-ExtraLight"
+            
+        case .light:
+            return "-Light"
+            
+        case .regular:
+            return "-Regular"
+            
+        case .medium:
+            return "-Medium"
+            
+        case .semibold:
+            return "-SemiBold"
+            
+        case .bold:
+            return "-Bold"
+            
+        case .heavy:
+            return "-ExtraBold"
+            
+        case .black:
+            return "-Black"
+            
+        default:
+            return "-Regular"
         }
     }
 }
