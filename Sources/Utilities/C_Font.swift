@@ -25,7 +25,7 @@ public struct C_Font {
             self.font = Font.system(size: size, weight: weight)
             
         default:
-            self.font = Font.custom(C_FontName.get(name, weight),
+            self.font = Font.custom(C_FontName.get(name),
                                     size: size,
                                     relativeTo: style)
         }

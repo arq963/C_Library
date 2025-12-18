@@ -28,6 +28,7 @@ public enum C_FontName {
     case poppins
     case jakarta
     case lexend
+    case jameelNooriNastaleeq
     
     /*static func get(_ self: C_FontName, _ fontWeight: Font.Weight) -> String {
 
@@ -156,11 +157,17 @@ public enum C_FontName {
             
         case .system:
             return ""
-            
         case .jakarta:
             return "PlusJakartaSans" + getWeight(weightOfFont)
-            
         case .lexend:
+            return "Lexend" + getWeight(weightOfFont)
+        case .gilroy:
+            return "Lexend" + getWeight(weightOfFont)
+        case .cera:
+            return "Lexend" + getWeight(weightOfFont)
+        case .poppins:
+            return "Lexend" + getWeight(weightOfFont)
+        case .jameelNooriNastaleeq:
             return "Lexend" + getWeight(weightOfFont)
         }
     }
