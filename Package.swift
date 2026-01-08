@@ -12,11 +12,14 @@ let package = Package(
         .library(
             name: "C_Library",
             targets: ["C_Library"]
-        ),
+        )
     ],
     targets: [
         .target(
-            name: "C_Library"
+            name: "C_Library",
+            resources: [
+                .process("Fonts")
+            ]
         )
     ]
 )

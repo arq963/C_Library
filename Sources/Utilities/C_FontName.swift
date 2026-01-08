@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreText
 
 /*
  100: Thin
@@ -30,114 +31,13 @@ public enum C_FontName {
     case lexend
     case jameelNooriNastaleeq
     
-    /*static func get(_ self: C_FontName, _ fontWeight: Font.Weight) -> String {
-
-        switch self {
-            
-        case .gilroy:
-            
-            switch fontWeight {
-                
-            case .ultraLight:
-                return "Gilroy-Light"
-
-            case .thin:
-                return "Gilroy-Light"
-
-            case .light:
-                return "Gilroy-Light"
-
-            case .regular:
-                return "Gilroy-Medium"
-
-            case .medium:
-                return "Gilroy-Medium"
-
-            case .semibold:
-                return "Gilroy-SemiBold"
-
-            case .heavy:
-                return "Gilroy-ExtraBold"
-
-            case .bold:
-                return "Gilroy-ExtraBold"
-                
-            case .black:
-                return "Gilroy-ExtraBold"
-                
-            default:
-                return ""
-            }
-            
-        case .cera:
-            
-            switch fontWeight {
-                
-            case .ultraLight:
-                return "Cera Pro Light"
-
-            case .thin:
-                return "Cera Pro Light"
-
-            case .light:
-                return "Cera Pro Light"
-
-            case .regular:
-                return "Cera Pro Light"
-
-            case .medium:
-                return "Cera Pro Medium"
-
-            case .semibold:
-                return "Cera Pro Medium"
-
-            case .heavy:
-                return "Cera Pro Bold"
-
-            case .bold:
-                return "Cera Pro Bold"
-                
-            default: return ""
-                
-            }
-            
-        case .poppins:
-            
-            switch fontWeight {
-                
-            case .ultraLight:
-                return "Poppins-Thin"
-
-            case .thin:
-                return "Poppins-Thin"
-
-            case .light:
-                return "Poppins-Light"
-
-            case .regular:
-                return "Poppins-Regular"
-
-            case .medium:
-                return "Poppins-Medium"
-
-            case .semibold:
-                return "Poppins-SemiBold"
-
-            case .heavy:
-                return "Poppins-ExtraBold"
-
-            case .bold:
-                return "Poppins-Bold"
-                
-            default:
-                return ""
-                
-            }
-            
-        case .system:
-            return ""
-        }
-    }  */
+    // MARK: - Public Properties
+    
+    /// Call once during app launch
+    public static func registerFonts() {
+        registerFonts(ext: "otf")
+        registerFonts(ext: "ttf")
+    }
     
     static func get(_ self: C_FontName,
                     fontWeight: Font.Weight? = nil,
@@ -152,27 +52,86 @@ public enum C_FontName {
         } else if let fontWeight = fontWeight {
             weightOfFont = fontWeight
         }
-
+        
         switch self {
             
         case .system:
             return ""
-        case .jakarta:
-            return "PlusJakartaSans" + getWeight(weightOfFont)
-        case .lexend:
-            return "Lexend" + getWeight(weightOfFont)
+            
         case .gilroy:
-            return "Lexend" + getWeight(weightOfFont)
+            switch fontWeight {
+            case .ultraLight:   return "Gilroy-UltraLight"
+            case .thin:         return "Gilroy-Thin"
+            case .light:        return "Gilroy-Light"
+            case .regular:      return "Gilroy-Regular"
+            case .medium:       return "Gilroy-Medium"
+            case .semibold:     return "Gilroy-SemiBold"
+            case .heavy:        return "Gilroy-Heavy"
+            case .bold:         return "Gilroy-Bold"
+            case .black:        return "Gilroy-Black"
+            default:            return "Font: No Font Found"
+            }
+            
         case .cera:
-            return "Lexend" + getWeight(weightOfFont)
+            switch fontWeight {
+            case .ultraLight:   return "CeraPro-Light"
+            case .thin:         return "CeraPro-Light"
+            case .light:        return "CeraPro-Light"
+            case .regular:      return "CeraPro-Regular"
+            case .medium:       return "CeraPro-Medium"
+            case .semibold:     return "CeraPro-Medium"
+            case .heavy:        return "CeraPro-ExtraBold"
+            case .bold:         return "CeraPro-Bold"
+            case .black:        return "CeraPro-Black"
+            default:            return "Font: No Font Found"
+            }
+            
         case .poppins:
-            return "Lexend" + getWeight(weightOfFont)
+            switch fontWeight {
+            case .ultraLight:   return "Poppins-Thin"
+            case .thin:         return "Poppins-Thin"
+            case .light:        return "Poppins-Light"
+            case .regular:      return "Poppins-Regular"
+            case .medium:       return "Poppins-Medium"
+            case .semibold:     return "Poppins-SemiBold"
+            case .heavy:        return "Poppins-ExtraBold"
+            case .bold:         return "Poppins-Bold"
+            default:            return "Font: No Font Found"
+            }
+            
+        case .jakarta:
+            return ""
+            
+        case .lexend:
+            return ""
+            
         case .jameelNooriNastaleeq:
-            return "Lexend" + getWeight(weightOfFont)
+            return ""
         }
     }
     
-    static func fromRawValue(_ value: Int) -> Font.Weight {
+    // MARK: - Private Properties
+    
+    private static func registerFonts(ext: String) {
+        
+        guard let urls = Bundle.module.urls(forResourcesWithExtension: ext,
+                                            subdirectory: nil)
+        else {
+            return
+        }
+        
+        if urls.isEmpty {
+            print("Font: No fonts registered")
+        } else {
+            print("Font: \(urls.count) .\(ext) fonts registered")
+            for url in urls {
+                CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+            }
+        }
+    }
+    
+    
+    private static func fromRawValue(_ value: Int) -> Font.Weight {
         let normalizedValue = max(100, min(value, 900)) // Clamp between 100-900
         
         switch normalizedValue {
@@ -188,40 +147,6 @@ public enum C_FontName {
         default:        return .regular // Fallback (shouldn't happen due to clamping)
         }
     }
-    
-    private static func getWeight(_ fontWeight: Font.Weight) -> String {
-        
-        switch fontWeight {
-            
-        case .ultraLight:
-            return "-Thin"
-            
-        case .thin:
-            return "-ExtraLight"
-            
-        case .light:
-            return "-Light"
-            
-        case .regular:
-            return "-Regular"
-            
-        case .medium:
-            return "-Medium"
-            
-        case .semibold:
-            return "-SemiBold"
-            
-        case .bold:
-            return "-Bold"
-            
-        case .heavy:
-            return "-ExtraBold"
-            
-        case .black:
-            return "-Black"
-            
-        default:
-            return "-Regular"
-        }
-    }
 }
+
+private final class FontRegistrarMarker {}

@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import UIKit
+import CoreText
 
 public struct C_Font {
     
@@ -25,7 +27,7 @@ public struct C_Font {
             self.font = Font.system(size: size, weight: weight)
             
         default:
-            self.font = Font.custom(C_FontName.get(name),
+            self.font = Font.custom(C_FontName.get(name, fontWeight: weight),
                                     size: size,
                                     relativeTo: style)
         }
@@ -42,33 +44,5 @@ extension Font {
     
     public static var sectionHeader: Font {
         .system(size: 13, weight: .semibold, design: .default)
-    }
-    
-    public func getFontColor(for font: Font) -> Color {
-        
-        switch font {
-        case .labelTextPrimary:
-            return .gray
-        case .sectionHeader:
-            return .textSectionHeader
-        case .title3:
-            return .textPrimary
-        case .title2:
-            return .textPrimary
-        case .title:
-            return .textPrimary
-        case .body:
-            return .textPrimary
-        case .callout:
-            return .textSecondary
-        case .caption:
-            return .textSecondary
-        case .caption2:
-            return .textSecondary
-        case .footnote:
-            return .textSecondary
-        default:
-            return .textSecondary
-        }
     }
 }
