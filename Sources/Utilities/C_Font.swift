@@ -22,10 +22,8 @@ public struct C_Font {
                 relativeTo style: Font.TextStyle = .body) {
         
         switch name {
-            
         case .system:
             self.font = Font.system(size: size, weight: weight)
-            
         default:
             self.font = Font.custom(C_FontName.get(name, fontWeight: weight),
                                     size: size,
