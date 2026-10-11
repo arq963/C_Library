@@ -106,7 +106,7 @@ public enum C_FontName {
             return ""
             
         case .jameelNooriNastaleeq:
-            return ""
+            return "Jameel Noori Nastaleeq"
         }
     }
     
