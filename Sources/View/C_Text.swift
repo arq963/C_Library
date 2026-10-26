@@ -18,16 +18,22 @@ public struct C_Text: View {
     public let fontWeight: Font.Weight?
     
     private let textAlignment: TextAlignment
+    /// `.fontWeight` after `Font.custom` asks for a system face and drops Nastaleeq.
+    private let usesCustomFont: Bool
     
     public var body: some View {
         
-        Text(text)
-            .font(font)
-            .fontWeight(fontWeight)
+        resolvedText
             .multilineTextAlignment(textAlignment)
             .foregroundStyle(color)
             .fixedSize(horizontal: false, vertical: fixedSizeVertical)
             .frame(width: width, alignment: alignment)
+    }
+    
+    private var resolvedText: Text {
+        let styled = Text(text).font(font)
+        guard !usesCustomFont, let fontWeight else { return styled }
+        return styled.fontWeight(fontWeight)
     }
     
     public init(_ text: String,
@@ -46,6 +52,7 @@ public struct C_Text: View {
         self.alignment = alignment
         self.color = color
         self.fontWeight = fontWeight
+        self.usesCustomFont = fontName != .system
         
         switch alignment {
                 
@@ -74,6 +81,7 @@ public struct C_Text: View {
         self.font = type
         self.color = color ?? .textPrimary
         self.fontWeight = fontWeight
+        self.usesCustomFont = false
         self.textAlignment = alignment
         
         switch alignment {
